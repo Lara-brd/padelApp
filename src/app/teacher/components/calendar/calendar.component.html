@@ -1,4 +1,21 @@
-<full-calendar [events]="events"  [options]="calendarOptions">
+<div class="wrapp-calendar">
+  <full-calendar [events]="events"  [options]="calendarOptions">
+  </full-calendar>
+  <div *ngIf="displayDialog" class="dialog shadow">
+    <h2>Event: {{ currentEvent.title }}</h2>
+    <hr>
 
-</full-calendar>
+    <p *ngIf="currentEvent.allDay; else notAllday">All Day</p>
+    <ng-template #notAllday>
+      <p>{{schedule()}}</p>
+
+    </ng-template>
+
+
+
+    <!-- <p>{{ allDay() }}</p> -->
+    <p>{{ currentEvent.description }}</p>
+
+  </div>
+</div>
 

@@ -1,0 +1,15 @@
+
+.teacher-info{
+  display: flex;
+  align-items:center;
+  padding:40px;
+  h3{
+    font-weight: 200;
+    font-size: 2rem;
+  }
+  img{
+    width: 80px;
+    border-radius: 50px;
+    margin:2px;
+  }
+}

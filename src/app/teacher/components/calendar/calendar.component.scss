@@ -1,0 +1,15 @@
+.wrapp-calendar{
+  position: relative;
+  padding:50px;
+  .dialog{
+    position:absolute;
+    background-color: rgb(25, 25, 31);
+    color:white;
+    top:0;
+    left:0;
+    z-index: 10;
+    padding:80px;
+    height: 100%;
+  }
+}
+// 1271,524
