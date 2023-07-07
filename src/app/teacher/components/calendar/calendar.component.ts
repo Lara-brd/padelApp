@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
+import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar'
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPluguin from '@fullcalendar/interaction';
 import { DataTeacherService } from 'src/app/shared/services/data-teacher.service';
 import { EventTeacher, Teacher } from 'src/app/shared/interfaces/teacher.interface';
 import { FormatDateService } from 'src/app/shared/services/format-date.service';
+import { SnackbarComponent } from '../snackbar/snackbar.component';
 
 
 @Component({
@@ -14,15 +16,18 @@ import { FormatDateService } from 'src/app/shared/services/format-date.service';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
+  //duration for snakbar
+  durationInSeconds = 5;
 
+  //Evento seleccionado
   currentEvent!:EventTeacher;
 
-  displayDialog:boolean = false;
+  //Abre el cuadro de diálogo al clicar el evento
+  displayDialogEvent:boolean = false;
 
-  title!:string;
 
+  constructor ( private dataTeacherSvc: DataTeacherService, private formatDateSvc:FormatDateService, private _snackBar: MatSnackBar ){}
 
-  constructor ( private dataTeacherSvc: DataTeacherService, private formatDateSvc:FormatDateService ){}
 
   //Array de eventos del usuario
   get events(){
@@ -72,7 +77,7 @@ export class CalendarComponent {
   eventClickFunction(info:any){
     // alert('Event: ' + info.event.title)
     // alert('Coordinates: ' + info.jsEvent.screenX  + ',' + info.jsEvent.pageY);
-    this.displayDialog = !this.displayDialog;
+    this.onCloseEvent();
     //buscando el evento por id en los datos del servicci
     const found = this.dataTeacherSvc.dataTeacher.eventsTeacher.find(({ id })=>id === info.event._def.publicId);
     if(found){
@@ -120,14 +125,35 @@ export class CalendarComponent {
 
   schedule(){
     if(this.currentEvent.startDay === this.currentEvent.endDay ){
-      return `${this.currentEvent.startDay} ${this.currentEvent.startTime} - ${this.currentEvent.endTime}`
+      return `
+      ${this.currentEvent.startDay} ${this.currentEvent.startTime} - ${this.currentEvent.endTime}`
     }
     return `
     ${this.currentEvent.startDay} ${this.currentEvent.startTime}
       -
-    ${this.currentEvent.endDay} ${this.currentEvent.endTime}
-    `
+    ${this.currentEvent.endDay} ${this.currentEvent.endTime}`
   }
+
+  onCloseEvent(){
+    this.displayDialogEvent = !this.displayDialogEvent;
+  }
+
+  onDeleteEvent(){
+    this.dataTeacherSvc.deleteEventTeacher(this.currentEvent.id);
+    this.openSnackBar();
+    this.onCloseEvent();
+
+  }
+
+  //Aviso sobre evento borrado
+  openSnackBar() {
+    this._snackBar.openFromComponent(SnackbarComponent , {
+      duration: this.durationInSeconds * 1000,
+    });
+  }
+
+
+
 
 
 

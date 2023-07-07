@@ -59,4 +59,15 @@ export class DataTeacherService {
     return this._dataTeacher;
   }
 
+  deleteEventTeacher(eventId:string){
+
+    const newEvents = this._dataTeacher.eventsTeacher.filter(el => {
+      return el.id !== eventId;
+    })
+
+    this._dataTeacher.eventsTeacher = newEvents;
+    console.log(this._dataTeacher.eventsTeacher)
+
+  }
+
 }
