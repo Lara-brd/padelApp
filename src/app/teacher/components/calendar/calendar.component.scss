@@ -1,51 +1,10 @@
 .wrapp-calendar{
   padding:20px;
   position: relative;
-  .dialog {
-    position:absolute;
-    padding:10px;
-    // background-color: rgb(25, 25, 31);
-    color:var(--mygray);
-    background-color: var(--darkgray);
-    border: 1px solid var(--secondary);
-    top:0;
-    left:0;
-    z-index: 10;
-    height:auto;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-
-    hr{
-      background-color:var(--primary);
-      height: 5px;
-      border:none;
-      margin-bottom:20px;
-    }
-
-    .dialog-buttons{
-      color: var(--primary);
-      display: flex;
-      justify-content: right;
-      align-items: center;
-      & >*{
-        margin-left:10px;
-      }
-    }
-
-    .content{
-      padding:30px 80px 50px 50px;
-      h2{
-        font-size: 1.5rem;
-      }
-      p{
-        font-size: 1.2rem;
-      }
-    }
-  }
 
 }
 
-.formulario {
+.dialog-box{
   position:absolute;
   background-color: rgb(255, 255, 255);
   z-index: 10;
@@ -55,6 +14,9 @@
   border-bottom-right-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
+  .form-content{
+    margin:60px 40px 40px 40px;
+  }
 
   .btn-close{
     float:right;
@@ -62,12 +24,46 @@
     box-shadow:none;
   }
 
-  .form-content{
-    margin:60px 40px 40px 40px;
-
+  .dialog-buttons{
+  color: var(--primary);
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  & >*{
+    margin-left:10px;
   }
 }
 
+}
 
 
+.dialog-event{
+  padding:0px 0px 40px 40px;
+  h2{
+    font-size: 1.5rem;
+  }
+  p{
+    font-size: 1.1rem;
+  }
+  .data-event{
+    font-size: 1.5rem;
+    font-weight: 200;
+    margin-bottom: 40px;
+  }
+  .content-event {
+    color:var(--darkgray);
+    mat-divider{
+      margin-bottom: 20px;
+    }
+  }
+}
 
+.endStartTime{
+  margin-bottom: 40px;
+}
+
+.bg-light{
+  background-color: var(--secondary-light);
+  padding:5px;
+  border-radius: 5px;
+}

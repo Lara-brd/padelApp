@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { EventTeacher, Teacher } from '../interfaces/teacher.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +25,7 @@ export class DataTeacherService {
         start:  '2023-07-06T14:30:00',
         end:  '2023-07-06T15:30:00',
         allDay: false,
-        textColor:'pink',
-        description:"DEscripción del evento"
+        description:"Descripción del evento (opcional)"
 
       },
       {
@@ -37,29 +37,41 @@ export class DataTeacherService {
       },
       {
         id:'E3',
-        title:"carla aacaba",
+        title:"Carla Ricard",
         start:  '2023-07-01T14:30:00',
         end:    '2023-07-02T16:30:00',
         allDay: false,
-        description:"DEscripción del evento"
+        description:"Descripción del evento (opcional)"
       },
       {
         id:'E4',
-        title:"Janan el pesao",
+        title:"Jordi Vicens",
         start:  '2023-07-13T14:30:00',
-        allDay: true,
-        description:"DEscripción del evento"
-      },
-      {
-        id:'E5',
-        title:"JPaul",
-        start:  '2023-07-26T07:30:00',
-        end:'2023-07-26T09:30:00',
+        end:  '2023-07-13T16:30:00',
         allDay: false,
-        description:"DEscripción del evento"
+        description:"Descripción del evento (opcional)"
       },
     ]
   }
+
+  //EVENTS$_______________________________________
+
+  //Observable events, GET -->Permite recibir información de los nuevos eventos a instante | SETEVENT --> nos permite establecer nuevos eventos desde cualquier componente.
+
+  private events$ = new BehaviorSubject<EventTeacher[]>(this._dataTeacher.eventsTeacher);
+
+  get allEvents$():Observable<EventTeacher[]>{
+    return this.events$.asObservable();
+  }
+
+  //Actualiza la lista de eventos en el observable tanto al borrar como al añadir eventos
+  newEventList(){
+    this.events$.next([...this._dataTeacher.eventsTeacher])
+  }
+
+
+
+  //______________________________________________
 
   //Emite información no editable
   get dataTeacher (){

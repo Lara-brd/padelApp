@@ -1,7 +1,6 @@
-  <!-- DIALOG ADD EVENT -->
-
-  <div class="formulario">
-    <button mat-mini-fab aria-label="icon button with a home icon" color="primary" class="btn-close" (click)="onCloseEvent()">
+  <!-- DIALOG FORMULARIO - añadiendo evento -->
+  <div class="formulario dialog-box" *ngIf="displayForm">
+    <button mat-mini-fab aria-label="icon button with a home icon" color="primary" class="btn-close" (click)="onDisplayForm()">
       <mat-icon>close</mat-icon>
     </button>
     <div class="form-content">
@@ -9,13 +8,10 @@
     </div>
   </div>
 
-<div class="wrapp-calendar">
-  <full-calendar [events]="events"  [options]="calendarOptions">
-  </full-calendar>
 
   <!-- DIALOG OPEN EVENT -->
-  <div *ngIf="displayDialogEvent" class="dialog shadow">
-
+  <div *ngIf="displayDialogEvent" class="dialog-event dialog-box">
+    <!-- Grupo de botones zona superior -->
     <div class="dialog-buttons">
       <button mat-icon-button disabled aria-label="icon button with a vertical three dot icon">
         <mat-icon>edit</mat-icon>
@@ -23,28 +19,27 @@
       <button mat-icon-button aria-label="icon button with a vertical three dot icon" (click)="onDeleteEvent()">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-mini-fab aria-label="icon button with a home icon" color="primary" class="btn-close" (click)="onCloseEvent()">
+      <button mat-mini-fab aria-label="icon button with a home icon" color="primary" class="btn-close" (click)=" onDisplayEvent()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
 
-    <div class="content">
+    <div class="content-event">
       <h2>Event: {{ currentEvent.title }}</h2>
-      <hr>
-      <p *ngIf="currentEvent.allDay; else notAllday">All Day</p>
-      <ng-template #notAllday>
-        <p>{{schedule()}}</p>
-      </ng-template>
-
-      <p>{{currentEvent.id}}</p>
-      <p>{{ currentEvent.description }}</p>
+      <mat-divider></mat-divider>
+      <p class="data-event">{{dataEvent}}</p>
+      <p class="endStr">From <span class="bg-light">{{startTimeEvent}}</span>  to <span class="bg-light">{{endTimeEvent}}</span></p>
+      <p>{{currentEvent.description}}</p>
     </div>
-
   </div>
 
+<div class="wrapp-calendar">
 
-
+  <full-calendar [events]="events"  [options]="calendarOptions">
+  </full-calendar>
 </div>
+
+
 
 
 

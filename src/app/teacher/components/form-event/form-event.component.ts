@@ -1,6 +1,6 @@
 import { DataTeacherService } from 'src/app/shared/services/data-teacher.service';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { FormatDateOptions } from '@fullcalendar/core';
 import { EventTeacher } from 'src/app/shared/interfaces/teacher.interface';
 import { FormatDateService } from 'src/app/shared/services/format-date.service';
@@ -13,7 +13,6 @@ import { FormatDateService } from 'src/app/shared/services/format-date.service';
 
 export class FormEventComponent {
 
-
   @Input() selectedDay!:string;
 
   // Recoge la fecha seleccionada clicando sobre el calendario y la cambia de formato
@@ -22,7 +21,10 @@ export class FormEventComponent {
     return day;
   }
 
-  constructor( private fb: FormBuilder, private formatSvc:FormatDateService, private dataTeacherSvc:DataTeacherService ){}
+  constructor(
+     private fb: FormBuilder,
+     private formatSvc:FormatDateService,
+     private dataTeacherSvc:DataTeacherService ){}
 
   get optionsTime():string[] {
     return this.formatSvc.optionsTime;
@@ -33,6 +35,7 @@ export class FormEventComponent {
     eventname: ['', [Validators.required, Validators.minLength(3)]],
     starttime: ['09:00'],
     endtime: ['10:00'],
+    description:['']
 
   })
 
@@ -68,15 +71,21 @@ export class FormEventComponent {
       id:`E${idnumber}`,
       title:this.myForm.controls['eventname'].value,
       allDay:false,
-      startTime:`${this.selectedDay}T${this.myForm.controls['starttime'].value}:00`,
-      endTime: `${this.selectedDay}T${ this.myForm.controls['endtime'].value}:00`  ,
+      description:this.myForm.controls['description'].value,
+      start:`${this.selectedDay}T${this.myForm.controls['starttime'].value}:00`,
+      end: `${this.selectedDay}T${ this.myForm.controls['endtime'].value}:00`  ,
+
     }
-
-    this.dataTeacherSvc.addEventFromForm(newEvent)
-
-    console.log(newEvent)
+    this.dataTeacherSvc.addEventFromForm(newEvent);
+    this.dataTeacherSvc.newEventList();
 
 
   }
+
+
+  // borrar(i:number){
+  //   this.favoritosArr.removeAt(i);
+  // }
+
 
 }

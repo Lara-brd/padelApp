@@ -6,10 +6,15 @@
   h3{
     font-weight: 200;
     font-size: 2rem;
+    color:var(--secondary);
   }
   img{
     width: 80px;
     border-radius: 50px;
     margin:2px;
+  }
+
+  .texto-destacado{
+    font-weight: 500;
   }
 }
