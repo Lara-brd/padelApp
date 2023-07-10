@@ -1,0 +1,57 @@
+
+<!-- FORMULARIO para introducir nuevo evento con día y hora -->
+
+<form [formGroup]="myForm" autocomplete="off" (ngSubmit)="onSave()">
+
+  <!-- NAME -->
+  <mat-form-field>
+    <mat-label>Event Title:</mat-label>
+    <input matInput
+          formControlName="eventname"
+          type="text">
+    <!-- Mensaje de error -->
+    <mat-error>
+      {{getFieldError('eventname')}}
+    </mat-error>
+  </mat-form-field>
+
+  <!-- Muestra la fecha seleccionada al clicar sobre el calendario -->
+  <h2>{{selectedDayFormat}}</h2>
+
+
+  <div class="wrapper-time">
+    <mat-icon aria-hidden="false" aria-label="icon schedule" fontIcon="schedule"></mat-icon>
+    <p>From</p>
+    <!-- START TIME -->
+    <mat-form-field class="time starttime">
+      <mat-select type="select" name="starthour" formControlName="starttime">
+        <mat-option *ngFor = "let time of optionsTime" [value] = time>{{time}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p>to</p>
+    <mat-form-field class="time endtime">
+      <mat-select type="select" name="endhour" formControlName="endtime">
+        <mat-option *ngFor = "let time of optionsTime" [value] = time>{{time}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- SUMIT button -->
+  <button mat-raised-button type="submit" color="primary">Save</button>
+
+</form>
+
+
+
+
+  <!-- TODO poder seleccionar varios días para establecer el mismo horario todos esos días -->
+  <!-- <mat-form-field>
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="datapicker">
+    <mat-hint>MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field> -->
+
+
+

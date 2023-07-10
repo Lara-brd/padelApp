@@ -7,6 +7,9 @@ import { TeacherProfileComponent } from './components/teacher-profile/teacher-pr
 import { MaterialModule } from '../shared/material/material.module';
 import { ComponentsComponent } from './components/components.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
+import { FormEventComponent } from './components/form-event/form-event.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 
 
@@ -17,12 +20,15 @@ import { SnackbarComponent } from './components/snackbar/snackbar.component';
     CalendarComponent,
     TeacherProfileComponent,
     ComponentsComponent,
-    SnackbarComponent
+    SnackbarComponent,
+    FormEventComponent
   ],
   imports: [
     CommonModule,
     FullCalendarModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
+
   ],
   exports:[
     HomeTeacherComponent

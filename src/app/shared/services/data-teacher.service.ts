@@ -50,24 +50,35 @@ export class DataTeacherService {
         allDay: true,
         description:"DEscripción del evento"
       },
-
+      {
+        id:'E5',
+        title:"JPaul",
+        start:  '2023-07-26T07:30:00',
+        end:'2023-07-26T09:30:00',
+        allDay: false,
+        description:"DEscripción del evento"
+      },
     ]
   }
 
-
+  //Emite información no editable
   get dataTeacher (){
     return this._dataTeacher;
   }
 
+  //Borrar elementos del array de eventos
   deleteEventTeacher(eventId:string){
-
     const newEvents = this._dataTeacher.eventsTeacher.filter(el => {
       return el.id !== eventId;
     })
-
     this._dataTeacher.eventsTeacher = newEvents;
-    console.log(this._dataTeacher.eventsTeacher)
+  }
 
+
+  //Añadiendo nuevo evento desde el formulario
+  addEventFromForm(event:EventTeacher){
+    this._dataTeacher.eventsTeacher.push(event);
+    console.log('from service', this._dataTeacher)
   }
 
 }

@@ -12,7 +12,8 @@ export interface Teacher {
 export interface EventTeacher {
   id           : string;
   title        : string;
-  allDay       : boolean;
+  day?         : string;
+  allDay?      : boolean;
   start?       : string;
   end?         : string;
   startDay?    : string;

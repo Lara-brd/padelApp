@@ -1,3 +1,23 @@
+//Tema customizado
+
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$my-primary: mat.define-palette(mat.$light-green-palette, 500);
+$my-accent: mat.define-palette(mat.$indigo-palette, 900);
+
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((
+    color: (
+        primary: $my-primary,
+        accent: $my-accent,
+    )
+));
+
+@include mat.all-component-themes($my-theme);
+
 
 html, body { height: 100%; }
 body {
@@ -6,7 +26,7 @@ body {
 }
 
 :root{
-  --primary: #9fa537;
+  --primary: #8BC34A;
   --secondary: #223187;
   --mygray:#9e9898;
   --darkgray:rgb(45, 44, 47);

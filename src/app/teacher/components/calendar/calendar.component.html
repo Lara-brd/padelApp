@@ -1,44 +1,52 @@
+  <!-- DIALOG ADD EVENT -->
+
+  <div class="formulario">
+    <button mat-mini-fab aria-label="icon button with a home icon" color="primary" class="btn-close" (click)="onCloseEvent()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="form-content">
+      <app-form-event [selectedDay]="selectedDay"></app-form-event>
+    </div>
+  </div>
+
 <div class="wrapp-calendar">
   <full-calendar [events]="events"  [options]="calendarOptions">
   </full-calendar>
+
+  <!-- DIALOG OPEN EVENT -->
   <div *ngIf="displayDialogEvent" class="dialog shadow">
 
     <div class="dialog-buttons">
-      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+      <button mat-icon-button disabled aria-label="icon button with a vertical three dot icon">
         <mat-icon>edit</mat-icon>
       </button>
-      <button mat-icon-button aria-label="Example icon button with a vertical three dot icon" (click)="onDeleteEvent()">
+      <button mat-icon-button aria-label="icon button with a vertical three dot icon" (click)="onDeleteEvent()">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-mini-fab aria-label="Example icon button with a home icon" class="btn-close" (click)="onCloseEvent()">
+      <button mat-mini-fab aria-label="icon button with a home icon" color="primary" class="btn-close" (click)="onCloseEvent()">
         <mat-icon>close</mat-icon>
       </button>
     </div>
 
     <div class="content">
-
       <h2>Event: {{ currentEvent.title }}</h2>
       <hr>
-
       <p *ngIf="currentEvent.allDay; else notAllday">All Day</p>
       <ng-template #notAllday>
         <p>{{schedule()}}</p>
       </ng-template>
 
-
       <p>{{currentEvent.id}}</p>
-
-      <!-- <p>{{ allDay() }}</p> -->
       <p>{{ currentEvent.description }}</p>
     </div>
 
-
   </div>
+
+
+
 </div>
 
-¡
 
-<button mat-stroked-button (click)="openSnackBar()" aria-label="Show an example snack-bar">
-  Pizza party
-</button>
+
+
 

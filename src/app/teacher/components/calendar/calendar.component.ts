@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core'; // useful for typechecking
 import {MatSnackBar, MatSnackBarRef, MatSnackBarModule} from '@angular/material/snack-bar'
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -16,26 +16,32 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent {
+
+  //Recoge el día seleccionado al clicar en el calendario
+  selectedDay:string ='';
+
   //duration for snakbar
   durationInSeconds = 5;
 
-  //Evento seleccionado
+  //Evento seleccionado al clicar sobre el en el calendario
   currentEvent!:EventTeacher;
 
   //Abre el cuadro de diálogo al clicar el evento
   displayDialogEvent:boolean = false;
 
+  //Abre el cuadro de diálogo con el formulario al clicar un día
+  displayForm:boolean = false;
+
 
   constructor ( private dataTeacherSvc: DataTeacherService, private formatDateSvc:FormatDateService, private _snackBar: MatSnackBar ){}
 
 
-  //Array de eventos del usuario
+  //recoge el array de todos los eventos del usuario
   get events(){
     return this.dataTeacherSvc.dataTeacher.eventsTeacher;
   }
 
-  //Recoge el evento seleccionado por el usuario
-  currentEventTeacher!:Teacher;
+
 
 
   //OPCIONES del calendario
@@ -48,8 +54,8 @@ export class CalendarComponent {
     selectable: true,
     editable:true,
     unselectAuto :true,
-    eventColor: '#378006',
-    eventBackgroundColor:'pink',
+    eventColor: '#8BC34A',
+    eventBackgroundColor:'#223187',
     contentHeight: 800,
     //como mostrará la hora:
     eventTimeFormat: { // like '14:30'
@@ -63,7 +69,7 @@ export class CalendarComponent {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek'
     },
-    //eventclick --> is clicamos sobre un evento nos manda los datos y nos permite hacer algo
+    //eventclick --> si clicamos sobre un evento nos manda los datos y nos permite hacer algo con bind llamamos la función eventClickFunction
     eventClick: this.eventClickFunction.bind(this),
     //al clicar sobre cualquier casilla nos manda la info de la fecha además de otras cosas.
     dateClick: this.handleDateClick.bind(this), // bind is important!
@@ -73,7 +79,7 @@ export class CalendarComponent {
   //_________________________________________
 
 
-
+  //Comandos que se ejecutn al clicar sobre un evento
   eventClickFunction(info:any){
     // alert('Event: ' + info.event.title)
     // alert('Coordinates: ' + info.jsEvent.screenX  + ',' + info.jsEvent.pageY);
@@ -89,18 +95,21 @@ export class CalendarComponent {
         this.currentEvent = { ...this.currentEvent, endDay:dia, endTime:hora}
       }
     };
-
     // change the border color just for fun
     info.el.style.borderColor = 'red';
-
   }
 
+
+  //Comandos que se ejecutn al clicar sobre un evento
   handleDateClick(info:any) {
-    // alert('Clicked on: ' + info.dateStr);
+    //Al clicar en un día recojo la información
+
+    this.selectedDay = this.formatDateSvc.changeDateSimbol(info.dateStr)  ;
+    console.log(this.selectedDay)
+    // console.log(this.selectedDay)
+
     // alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-    // alert('Current view: ' + info.view.type);
-    // this.title = info.event.title;
-    // // change the day's background color just for fun
+    // change the day's background color just for fun
     // info.dayEl.style.backgroundColor = 'red';
 
   }
@@ -117,12 +126,10 @@ export class CalendarComponent {
     if(found){
       //Recojo los datos del evento que el usuario selecciona
       this.currentEvent = found;
-
-
-
     };
   }
 
+  //Respuesta sobre la fecha del evento
   schedule(){
     if(this.currentEvent.startDay === this.currentEvent.endDay ){
       return `
@@ -134,22 +141,34 @@ export class CalendarComponent {
     ${this.currentEvent.endDay} ${this.currentEvent.endTime}`
   }
 
+  //Cierra dialogo donde se muestra la información del evento seleccionado
   onCloseEvent(){
     this.displayDialogEvent = !this.displayDialogEvent;
   }
 
+  //borra el evento que hemos abierto en diálogo y muestra un aviso
   onDeleteEvent(){
     this.dataTeacherSvc.deleteEventTeacher(this.currentEvent.id);
     this.openSnackBar();
     this.onCloseEvent();
-
   }
+
+  // TODO ediar evento
+  // onEditEvent(){
+  //   this.dataTeacherSvc.editEventTeacher(this.currentEvent.id);
+  // }
+
+
+
+
 
   //Aviso sobre evento borrado
   openSnackBar() {
     this._snackBar.openFromComponent(SnackbarComponent , {
       duration: this.durationInSeconds * 1000,
     });
+
+
   }
 
 
