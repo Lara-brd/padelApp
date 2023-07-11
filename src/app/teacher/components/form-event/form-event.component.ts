@@ -1,5 +1,5 @@
 import { DataTeacherService } from 'src/app/shared/services/data-teacher.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { FormatDateOptions } from '@fullcalendar/core';
 import { EventTeacher } from 'src/app/shared/interfaces/teacher.interface';
@@ -14,6 +14,7 @@ import { FormatDateService } from 'src/app/shared/services/format-date.service';
 export class FormEventComponent {
 
   @Input() selectedDay!:string;
+  @Output() closeForm:EventEmitter<boolean> = new EventEmitter();
 
   // Recoge la fecha seleccionada clicando sobre el calendario y la cambia de formato
   get selectedDayFormat (){
@@ -78,8 +79,7 @@ export class FormEventComponent {
     }
     this.dataTeacherSvc.addEventFromForm(newEvent);
     this.dataTeacherSvc.newEventList();
-
-
+    this.closeForm.emit(true);
   }
 
 

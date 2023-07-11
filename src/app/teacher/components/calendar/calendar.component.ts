@@ -111,7 +111,6 @@ export class CalendarComponent implements OnInit{
     this.selectedDay = this.formatDateSvc.changeDateSimbol(info.dateStr)  ;
     this. displayDialogEvent = false;
     this.onDisplayForm();
-
   }
 
 
@@ -155,9 +154,11 @@ export class CalendarComponent implements OnInit{
       duration: this.durationInSeconds * 1000,
     });
 
+  }
 
 
-
+  closeForm(){
+    this.onDisplayForm();
   }
 
 
