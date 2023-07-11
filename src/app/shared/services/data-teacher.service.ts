@@ -16,7 +16,8 @@ export class DataTeacherService {
     name:'Paula',
     email:'paula@test.com',
     gender:'f',
-    image:'',
+    image:'../../../assets/images/eva-sm.jpg',
+    alt:'fotogrfía profesor',
     //Events --> eventos para el calendario del profesor
     eventsTeacher : [
       {

@@ -67,3 +67,41 @@
   padding:5px;
   border-radius: 5px;
 }
+
+
+
+@media screen and (max-width: 575px){
+
+  .content-event{
+    padding:20px;
+
+    h2{
+      font-size: 1.2rem;
+    }
+
+    .data-event{
+      font-size: 1.3rem;
+      font-weight: 200;
+      margin-bottom: 20px;
+    }
+
+    p{
+      font-size: 1rem;
+    }
+
+
+  }
+
+  .wrapp-calendar{
+    padding:30px 0;
+  }
+
+  .dialog-box{
+    padding:0;
+  }
+
+  .dialog-event{
+    width: 100%;
+  }
+
+}

@@ -6,6 +6,7 @@ export interface Teacher {
   email         : string;
   gender        : string;
   image         : string;
+  alt           : string;
   eventsTeacher : EventTeacher[]
 }
 
@@ -16,4 +17,10 @@ export interface EventTeacher {
   start        : string;
   end?         : string;
   description? : string;
+}
+
+
+export interface MyCard {
+  text:string;
+  img:string;
 }

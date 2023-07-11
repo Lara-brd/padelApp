@@ -9,6 +9,8 @@ import { ComponentsComponent } from './components/components.component';
 import { SnackbarComponent } from './components/snackbar/snackbar.component';
 import { FormEventComponent } from './components/form-event/form-event.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MyplaceComponent } from './components/myplace/myplace.component';
+import { ExploreComponent } from './components/explore/explore.component';
 
 
 
@@ -21,7 +23,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     TeacherProfileComponent,
     ComponentsComponent,
     SnackbarComponent,
-    FormEventComponent
+    FormEventComponent,
+    MyplaceComponent,
+    ExploreComponent
   ],
   imports: [
     CommonModule,

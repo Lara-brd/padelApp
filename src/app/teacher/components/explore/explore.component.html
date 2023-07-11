@@ -1,0 +1,19 @@
+<section class="section-cards">
+
+  <div class="cards-intro">
+    <h2>Explora</h2>
+    <span class="spacer"></span>
+    <p>Ver más...</p>
+  </div>
+
+  <div class="cards-wrapp">
+
+      <!-- CARD -->
+    <div class="shadow rounded my-card my-explore-card" *ngFor="let content of cardContent" [class]="content.img">
+      <h2>{{content.text}}</h2>
+
+    </div>
+  </div>
+
+
+</section>

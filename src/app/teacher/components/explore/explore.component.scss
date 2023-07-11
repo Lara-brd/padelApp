@@ -1,0 +1,36 @@
+.my-explore-card{
+  padding:60px;
+  background-size: cover;
+  height: 400px;
+  width: 100%;
+  position:relative;
+  h2{
+    position:absolute;
+    color: #ffff;
+    bottom:0
+  }
+}
+
+//clases que se llaman desde ts según el contentido de la tarjeta
+
+.card-one{
+  background-image: url("../../../../assets/images/paddle1.jpg");
+}
+
+.card-two{
+  background-image: url("../../../../assets/images/paddle2.jpg");
+}
+
+@media screen and (max-width: 575px) {
+  .my-explore-card{
+    height: 200px;
+  }
+
+  h2{
+    margin-left: 10px;
+  }
+
+}
+
+
+

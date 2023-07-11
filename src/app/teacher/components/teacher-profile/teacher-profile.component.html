@@ -1,8 +1,12 @@
 
 <div class="teacher-info">
   <div>
-    <h3>Hola, <span class="texto-destacado"> Profesor<span *ngIf="teacher.gender ==='f'">a</span> {{teacher.name}}</span> ¿ Cómo estás ?</h3>
+    <div class="welcome">
+      <h3>Hola, <span class="texto-destacado"> Profesor<span *ngIf="teacher.gender ==='f'">a</span> {{teacher.name}}</span></h3>
+      <h3>¿Cómo estás?</h3>
+
+    </div>
   </div>
   <span class="spacer"></span>
-  <img src="../../../assets/images/eva-sm.jpg" alt="">
+  <img [src]=teacher.image [alt]=teacher.alt>
 </div>

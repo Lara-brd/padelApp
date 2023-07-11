@@ -23,6 +23,8 @@ html, body { height: 100%; }
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  box-sizing: border-box;
+
 }
 
 :root{
@@ -47,8 +49,16 @@ h6 {
   flex: 1 1 auto;
 }
 
-.shadow{
+.rounded {
+  border-radius: 10px;
+}
+
+.soft-shadow{
   box-shadow: rgba(0, 0, 0, 0.129) 0px 3px 8px;
+}
+
+.shadow{
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px;
 }
 
 .color-primary{
@@ -65,6 +75,72 @@ h6 {
 
 p {
   margin: 0;
+}
+
+
+// Cards ////////////////////////////
+
+.section-cards{
+  max-width: 1500px;
+  padding:40px;
+  margin-left: auto;
+  margin-right: auto;
+  p,h2,.mat-icon{
+    color:var(--secondary);
+  }
+
+  p{
+    font-size: 1.2rem;
+    margin:20px 0;
+  }
+  .mat-icon{
+    width: 100px;
+    height: 100px;
+  }
+  .cards-intro{
+    display: flex;
+    align-items: center;
+  }
+  .cards-wrapp{
+    padding:40px 0;
+    display: flex;
+    justify-content: space-between;
+
+    .my-card{
+      box-sizing: border-box;
+      width: 48%;
+      background-color: #fff;
+      padding:40px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor:pointer;
+    }
+  }
+
+}
+
+@media screen and (max-width: 575px) {
+
+  .section-cards{
+    margin-top:20px;
+    padding:20px 10px;
+
+    p{
+      font-size:1rem;
+      margin:0;
+    }
+  }
+
+  .mat-icon{
+    width: 50px;
+    height: 50px;
+    svg{
+      transform: scale(0.5)
+    }
+  }
+
 }
 
 
