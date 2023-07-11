@@ -2,26 +2,28 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.6.
 
-## Development server
+## Instalaciones
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+npm install
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Folding
 
-## Build
+Directorio shared donde se encuentran los elementos a compartir por los componentes
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+División por módulos independientes por lo que al crecer la aplicación permite la carga perezosa y también su reutilización.
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Funcionalidad
 
-## Running end-to-end tests
+Interfaz pensada para ser utilizada por el usuario profesor, permite guardar en el calendario eventos -->  clicando sobre el día a programar se abre un cuadro de diálogo con un formulario donde se pueden programar las clases guardando hora de iniciio y fin, descripción y nombre de evento.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Clicando sobre cualquier evento se puede consultar la información de este, desde aquí podemos eliminar el evento.
+(TODO --> botón de editar deshabilitado, falta añadir esta funcionalidad ).
 
-## Further help
+Diseño adaptativo.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
+
+
